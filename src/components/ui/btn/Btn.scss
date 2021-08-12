@@ -1,0 +1,19 @@
+@import "../../../global.scss";
+
+button {
+  &.orange {
+    background-color: $primary;
+    border: none;
+    padding: 10px 20px;
+    color: inherit;
+    min-width: fit-content;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-weight: bolder;
+    &:hover {
+      color: $primary;
+      background-color: inherit;
+      border: 1px solid $primary;
+    }
+  }
+}
