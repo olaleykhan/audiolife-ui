@@ -29,7 +29,10 @@ const Header = () => {
           </li>
         </ul>
         {/* cart will be replaced later with an icon when  I decide what library to use */}
-        <div> Cart</div>
+        <div>
+          {" "}
+          <Link to="sign-in"> Sign in</Link>
+        </div>
       </nav>
     </header>
   );
