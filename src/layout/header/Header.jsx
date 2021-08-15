@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase/firebase.config";
+import { connect } from "react-redux";
 
+import Btn from "../../components/ui/btn/Btn";
 import "./Header.scss";
 
 // import "./Header.scss";
 
-const Header = () => {
+const Header = ({ currentUser }) => {
+  console.log(auth);
   return (
     <header className="header">
       <nav>
@@ -30,12 +34,19 @@ const Header = () => {
         </ul>
         {/* cart will be replaced later with an icon when  I decide what library to use */}
         <div>
-          {" "}
-          <Link to="sign-in"> Sign in</Link>
+          {currentUser ? (
+            <Btn onClick={() => auth.signOut()}> Sign Out</Btn>
+          ) : (
+            <Link to="sign-in"> Sign in</Link>
+          )}
         </div>
       </nav>
     </header>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.userReducer.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);

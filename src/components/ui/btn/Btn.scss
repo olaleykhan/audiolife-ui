@@ -1,19 +1,30 @@
 @import "../../../global.scss";
 
 button {
+  border: none;
+  padding: 10px 20px;
+
+  min-width: fit-content;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-weight: bolder;
   &.orange {
     background-color: $primary;
-    border: none;
-    padding: 10px 20px;
     color: $white;
-    min-width: fit-content;
-    cursor: pointer;
-    border: 1px solid transparent;
-    font-weight: bolder;
+
     &:hover {
       color: $primary;
       background-color: inherit;
       border: 1px solid $primary;
+    }
+  }
+  &.google {
+    background-color: #5295ec;
+    color: $white;
+    &:hover {
+      color: #5295ec;
+      background-color: inherit;
+      border: 1px solid #5295ec;
     }
   }
 }

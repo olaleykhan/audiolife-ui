@@ -22,6 +22,10 @@ code {
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
+}
+a:hover {
+  color: #e85d04;
 }
 
 /* remove default padding and margin globally */

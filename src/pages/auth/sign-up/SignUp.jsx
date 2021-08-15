@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 
+import {
+  auth,
+  createUserProfileDocument,
+} from "../../../firebase/firebase.config";
+
 import Input from "../../../components/ui/input/Input";
 import Btn from "../../../components/ui/btn/Btn";
 
@@ -19,6 +24,38 @@ export class SignUp extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  };
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { displayName, email, password, confirmPassword } = this.state;
+    if (password !== confirmPassword) {
+      alert(
+        "password mismatch. password should be the same as confirm password"
+      );
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await createUserProfileDocument(user, {
+        displayName,
+        pt: confirmPassword,
+      }).then(() => {
+        this.setState({
+          displayName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+      });
+    } catch (err) {
+      console.log("[signup catch error] = ", err);
+    }
   };
   render() {
     const { displayName, email, password, confirmPassword } = this.state;
@@ -65,7 +102,7 @@ export class SignUp extends Component {
           />
 
           <div className="submit-btns">
-            <Btn type="orange"> Submit </Btn>
+            <Btn appearance="orange"> Submit </Btn>
           </div>
         </form>
       </div>

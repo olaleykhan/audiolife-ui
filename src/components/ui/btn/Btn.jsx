@@ -1,10 +1,12 @@
 import React from "react";
 import "./Btn.scss";
 
-const Btn = ({ children, type }) => {
+const Btn = ({ children, appearance, ...otherProps }) => {
   return (
     <div className="button">
-      <button className={`${type}`}>{children}</button>
+      <button className={`${appearance}`} {...otherProps}>
+        {children}{" "}
+      </button>
     </div>
   );
 };
