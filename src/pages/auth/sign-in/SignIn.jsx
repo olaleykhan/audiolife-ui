@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Input from "../../../components/ui/input/Input";
 import Btn from "../../../components/ui/btn/Btn";
 import { Link } from "react-router-dom";
+import { auth, signInWithGoogle } from "../../../firebase/firebase.config";
 
 import "./SignIn.scss";
 
@@ -19,9 +20,20 @@ export class SignIn extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
+    const { email, password } = this.state;
     e.preventDefault();
-    console.log("submittiing");
+    try {
+      await auth.signInWithEmailAndPassword(email, password).then(() => {
+        this.setState({
+          email: "",
+          password: "",
+        });
+        alert("login success");
+      });
+    } catch (error) {
+      console.log("error signing in", error.message);
+    }
   };
   render() {
     return (
@@ -50,10 +62,13 @@ export class SignIn extends Component {
             label="password"
           />
           <div className="submit-btns">
-            <Btn type="orange"> Submit </Btn>
-            {/* <Button type="button" behaviour="google">
+            <Btn type="submit" appearance="orange">
+              {" "}
+              Submit{" "}
+            </Btn>
+            <Btn type="button" appearance="google" onClick={signInWithGoogle}>
               Signin With Google
-            </Button> */}
+            </Btn>
           </div>
         </form>
 

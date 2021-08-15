@@ -16,7 +16,7 @@ const BigShowcaseCard = (props) => {
             ? props.children
             : "na here the description suppose dey, but you no pass anything in. no be me cause am na here the description suppose dey, but you no pass anything in. no be me cause am"}
         </p>
-        <Btn type="orange"> SEE PRODUCTS</Btn>
+        <Btn appearance="orange"> SEE PRODUCTS</Btn>
       </div>
       <div className="image">
         <img
